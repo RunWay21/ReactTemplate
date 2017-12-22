@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
-import queryString from 'query-string';
+import urlUtil from 'root/utils/url';
 
 class Pagination extends React.Component {
     constructor(props) {
@@ -10,14 +10,11 @@ class Pagination extends React.Component {
     }
 
     GetLinks() {
-        var items = [];
-        var query = queryString.parse(this.props.location.search, { arrayFormat: 'bracket' });
-        for (var i = 1; i <= this.props.page.totalPages; i++) {
-            query.page = i;
-            var newLocation = {
-                pathname: this.props.location.pathname,
-                search: queryString.stringify(query, { arrayFormat: 'bracket' })
-            };
+        let items = [];
+        let url = urlUtil.getUrl(this.props.location);
+        for (let i = 1; i <= this.props.page.totalPages; i++) {
+            url.query.page = i;
+            let newLocation = urlUtil.getLocation(url);
             items.push(
                 <li key={i}>
                     <NavLink className="pagination-link"
