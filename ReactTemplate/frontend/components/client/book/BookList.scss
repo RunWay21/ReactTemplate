@@ -1,0 +1,20 @@
+.client_book_list {
+    .col-id {
+        width: 2rem;
+    }
+    .col-author {
+        width: 10rem;
+    }
+    .col-title {
+        width: 10rem;
+    }
+    .col-description {
+        width: calc(100% - 2rem - 10rem - 10rem - 7rem - 5rem);
+    }
+    .col-isbn {
+        width: 7rem;
+    }
+    .col-date {
+        width: 5rem;
+    }
+}

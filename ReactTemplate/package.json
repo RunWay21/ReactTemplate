@@ -1,0 +1,42 @@
+{
+  "name": "reacttemplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": " ",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack --watch --hide-modules",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "private": true,
+  "author": "FLS",
+  "license": "PRIVATE",
+  "dependencies": {
+    "react": "16.x",
+    "react-dom": "16.x",
+    "react-router-dom": "4.x",
+    "redux": "3.x",
+    "redux-immutable-state-invariant": "2.x",
+    "react-redux": "5.x",
+    "redux-thunk": "2.x",
+    "axios": "0.x",
+    "fbjs": "0.x",
+    "query-string": "5.x",
+    "bulma": "0.x"
+  },
+  "devDependencies": {
+    "babel-core": "6.x",
+    "babel-loader": "7.x",
+    "babel-preset-env": "1.x",
+    "babel-preset-stage-2": "6.x",
+    "babel-preset-react": "6.x",
+    "cross-env": "5.x",
+    "node-sass": "4.x",
+    "sass-loader": "6.x",
+    "css-loader": "0.x",
+    "file-loader": "1.x",
+    "style-loader": "0.x",
+    "url-loader": "0.x",
+    "webpack": "3.x",
+    "webpack-watch-time-plugin": "0.x"
+  }
+}

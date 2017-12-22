@@ -1,0 +1,11 @@
+packages
+bin
+obj
+node_modules
+*.suo
+*.user
+*.log
+.vs*
+Publish
+*lock.json
+Content

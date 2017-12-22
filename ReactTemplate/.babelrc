@@ -1,0 +1,22 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false,
+        "useBuiltIns": true
+      }
+    ],
+    [
+      "stage-2"
+    ],
+    [
+      "react"
+    ]
+  ],
+  "plugins": [
+    [
+      "transform-async-to-generator"
+    ]
+  ]
+}

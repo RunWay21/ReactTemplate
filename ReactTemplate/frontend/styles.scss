@@ -1,0 +1,6 @@
+$body-size: 14px;
+@import '~bulma/bulma.sass';
+a[disabled] {
+    pointer-events: none;
+    cursor: default;
+}

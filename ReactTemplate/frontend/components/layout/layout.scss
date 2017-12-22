@@ -1,0 +1,26 @@
+.app-body {
+    margin-top: 0;
+    min-height: calc(100vh - 3.25rem);
+}
+
+.app-sidebar {
+    background-color: #363636;
+    padding: 2em 0 0 1.5em;
+    width: 15rem;
+    .menu-label {
+        color: rgb(150, 150, 150);
+    }
+    .menu-list {
+        a {
+            color: #a3a3a3;
+        }
+        a:hover {
+            color: #ccc;
+            background-color: transparent;
+        }
+        li.is-active {
+            border-right: 5px solid #3273dc;
+            background-color: transparent;
+        }
+    }
+}
