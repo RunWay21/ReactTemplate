@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Menu } from 'semantic-ui-react'
 
 import urlUtil from 'root/utils/url';
 
@@ -12,16 +13,13 @@ class Pagination extends React.Component {
     GetLinks() {
         let items = [];
         let url = urlUtil.getUrl(this.props.location);
+        const page = url.query.page;
         for (let i = 1; i <= this.props.page.totalPages; i++) {
             url.query.page = i;
             let newLocation = urlUtil.getLocation(url);
             items.push(
-                <li key={i}>
-                    <NavLink className="pagination-link"
-                        to={newLocation}
-                        isActive={(match, location) => newLocation.pathname == location.pathname && newLocation.search == location.search}
-                        activeClassName="is-current">{i}</NavLink>
-                </li>
+                <Menu.Item key={i} name={i.toString()} as={Link} to={newLocation}
+                    active={i == page}></Menu.Item>
             );
         }
         return items;
@@ -29,11 +27,11 @@ class Pagination extends React.Component {
 
     render() {
         return (
-            <nav className="pagination">
-                <ul className="pagination-list">
+            <div>
+                <Menu pagination>
                     {this.GetLinks()}
-                </ul >
-            </nav >
+                </Menu>
+            </div>
         );
     }
 }

@@ -2,9 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from 'root/actions'
-import Spinner from './Spinner.jsx';
-import Button from './Button.jsx';
-
+import { Header, Dimmer, Loader, Grid, Button } from 'semantic-ui-react';
 class RepeatPanel extends React.Component {
     constructor(props) {
         super(props);
@@ -26,29 +24,26 @@ class RepeatPanel extends React.Component {
     render() {
         if (this.isWait()) {
             return (
-                <div className="columns is-centered">
-                    <div className="column is-narrow has-text-centered">
-                        <div className="title">Loading...</div>
-                        <Spinner style={{ margin: '0 auto' }} size={3}></Spinner>
-                    </div>
-                </div>
+                <Loader active inline='centered'>Loading...</Loader>
             );
         }
         if (this.isError()) {
             return (
-                <div className="columns is-centered">
-                    <div className="column is-narrow has-text-centered">
-                        <div className="title is-4">Could not load data from the server.</div>
-                        <div className="subtitle">Press repeat button to reload data.</div>
-                        <div>
-                            <Button action={this.repeatAction} text={'Repeat'}></Button>
-                        </div>
-                    </div>
-                </div>
+                <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+                    <Grid.Column style={{ maxWidth: 450 }}>
+                        <Header as='h3'>
+                            Could not load data from the server.
+                            <Header.Subheader>Press repeat button to reload data.</Header.Subheader>
+                        </Header>
+                        <Button onClick={this.repeatAction}>Repeat</Button>
+                    </Grid.Column>
+                </Grid>
             );
         }
         return (
-            <div>{this.props.children}</div>
+            <div>
+                {this.props.children}
+            </div>
         );
     }
 }

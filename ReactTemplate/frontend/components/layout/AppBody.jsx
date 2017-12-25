@@ -12,7 +12,7 @@ export default class AppBody extends React.Component {
     render() {
         return (
             <div className="app-body columns">
-                <AppSidebar className="column"></AppSidebar>
+                {/* <AppSidebar className="column"></AppSidebar> */}
                 <AppContent className="column"></AppContent>
             </div>
         );

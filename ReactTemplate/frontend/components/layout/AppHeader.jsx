@@ -1,22 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-export default class Header extends React.Component {
+import { Menu } from 'semantic-ui-react';
+import urlHelper from 'root/utils/url';
+
+class Header extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this);
     }
-
+    goto(path) {
+        this.props.history.push({ pathname: path });
+    }
     render() {
         return (
-            <div className="app-header navbar is-link">
-                <div className="navbar-menu">
-                    <div className="navbar-start">
-                        <Link className="navbar-item" to='/app'>Home</Link>
-                        <Link className="navbar-item" to='/app/client/books'>Books</Link>
-                        <Link className="navbar-item" to='/app/awesome'>Awesome</Link>
-                    </div>
-                </div>
+            <div className="app-header">
+                <Menu  color={'blue'} inverted>
+                    <Menu.Item>
+                        <strong>VTrack</strong>
+                    </Menu.Item>
+                    {this.renderMenuItem('Home', '/app')}
+                    {this.renderMenuItem('Books', '/app/client/books')}
+                    {this.renderMenuItem('Awesome', '/app/awesome')}
+                </Menu>
             </div>
         );
     }
+    renderMenuItem(name, path) {
+        return <Menu.Item name={name} as={Link} to={path} active={this.props.location.pathname == path} />
+    }
 }
+
+export default withRouter(Header);

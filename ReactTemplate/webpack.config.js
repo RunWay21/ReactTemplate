@@ -23,7 +23,7 @@ module.exports = {
                 loader: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
-                test: /\.(png|jpg|gif)$/,
+                test: /\.(png|jpg|gif|svg|eot|ttf|woff2?)$/,
                 loader: 'file-loader',
                 options: {
                     name: '[name].[ext]?[hash]'
