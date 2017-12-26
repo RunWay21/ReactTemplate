@@ -21,12 +21,14 @@
     "axios": "0.x",
     "fbjs": "0.x",
     "query-string": "5.x",
-    "semantic-ui-css": "2.x",
-    "semantic-ui-react": "0.x"
+    "semantic-ui-less": "2.x",
+    "semantic-ui-react": "0.x",
+    "core-js": "2.x"
   },
   "devDependencies": {
     "babel-core": "6.x",
     "babel-loader": "7.x",
+    "babel-plugin-lodash": "3.x",
     "babel-preset-env": "1.x",
     "babel-preset-stage-2": "6.x",
     "babel-preset-react": "6.x",
@@ -36,8 +38,12 @@
     "css-loader": "0.x",
     "file-loader": "1.x",
     "style-loader": "0.x",
+    "less": "2.x",
+    "less-loader": "4.x",
     "url-loader": "0.x",
     "webpack": "3.x",
-    "webpack-watch-time-plugin": "0.x"
+    "webpack-watch-time-plugin": "0.x",
+    "extract-text-webpack-plugin": "3.x",
+    "webpack-bundle-analyzer": "2.x"
   }
 }

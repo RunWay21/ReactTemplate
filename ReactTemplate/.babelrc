@@ -17,6 +17,7 @@
   "plugins": [
     [
       "transform-async-to-generator"
-    ]
+    ],
+    ["lodash", { "id": ["lodash", "semantic-ui-react"] }]
   ]
 }
