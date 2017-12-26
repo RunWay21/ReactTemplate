@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-import { Menu } from 'semantic-ui-react';
+import { Navbar, Line } from 'root/ui';
 import urlHelper from 'root/utils/url';
 
 class Header extends React.Component {
@@ -9,25 +9,26 @@ class Header extends React.Component {
         super(props);
         console.log(this);
     }
-    goto(path) {
-        this.props.history.push({ pathname: path });
-    }
+
     render() {
         return (
             <div className="app-header">
-                <Menu  color={'blue'} inverted>
-                    <Menu.Item>
-                        <strong>VTrack</strong>
-                    </Menu.Item>
-                    {this.renderMenuItem('Home', '/app')}
+                <Navbar>
+                    <Navbar.Item brand as={Link} to={'/app'} active={this.props.location.pathname == '/app'}>
+                        VTrack
+                    </Navbar.Item>
                     {this.renderMenuItem('Books', '/app/client/books')}
                     {this.renderMenuItem('Awesome', '/app/awesome')}
-                </Menu>
+                </Navbar>
             </div>
         );
     }
     renderMenuItem(name, path) {
-        return <Menu.Item name={name} as={Link} to={path} active={this.props.location.pathname == path} />
+        return (
+            <Navbar.Item as={Link} to={path} active={this.props.location.pathname == path}>
+                {name}
+            </Navbar.Item>
+        );
     }
 }
 

@@ -10,6 +10,8 @@ import './BookList.scss';
 import { Icon, Container, Header, Divider, Table } from 'semantic-ui-react';
 import { Pagination, RepeatPanel } from 'components/shared';
 
+import { Line } from 'root/ui';
+
 class BookList extends React.Component {
     constructor(props) {
         super(props);
@@ -36,6 +38,10 @@ class BookList extends React.Component {
     render() {
         return (
             <div className="client_book_list">
+                <Line>
+                    <Line.Item>123</Line.Item>
+                    <Line.Item>123</Line.Item>
+                </Line>
                 <Container fluid={true}>
                     <Header size='medium'>Books page</Header>
                     <Divider />
@@ -64,7 +70,7 @@ class BookList extends React.Component {
             <Table>
                 <Table.Header>
                     <Table.Row>
-                        <Table.Cell colSpan='6'>                        
+                        <Table.Cell colSpan='6'>
                             <Icon name='close' />
                         </Table.Cell>
                     </Table.Row>

@@ -1,0 +1,25 @@
+@import 'var';
+.flex-item {
+    display: block;
+}
+
+@media (min-width: $mobile-width) {
+    .flex-line {
+        display: flex;
+        &.is-column {
+            flex-direction: column;
+        }
+        &.line-start {
+            justify-content: flex-start;
+        }
+        &.line-end {
+            justify-content: flex-end;
+        }
+        &.line-center {
+            justify-content: center;
+        }
+    }
+    .flex-item {
+        flex-grow: 1;
+    }
+}
