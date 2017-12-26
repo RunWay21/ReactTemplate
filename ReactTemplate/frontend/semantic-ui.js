@@ -5,5 +5,6 @@ import "semantic-ui-less/definitions/elements/container.less";
 import "semantic-ui-less/definitions/elements/divider.less";
 import "semantic-ui-less/definitions/elements/header.less";
 import "semantic-ui-less/definitions/elements/loader.less";
+import "semantic-ui-less/definitions/elements/icon.less";
 import "semantic-ui-less/definitions/collections/menu.less";
 import "semantic-ui-less/definitions/collections/table.less";

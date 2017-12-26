@@ -7,7 +7,7 @@ import types from 'root/actions/types';
 import urlUtil from 'root/utils/url';
 
 import './BookList.scss';
-import { Container, Header, Divider, Table } from 'semantic-ui-react';
+import { Icon, Container, Header, Divider, Table } from 'semantic-ui-react';
 import { Pagination, RepeatPanel } from 'components/shared';
 
 class BookList extends React.Component {
@@ -63,6 +63,11 @@ class BookList extends React.Component {
         return (
             <Table>
                 <Table.Header>
+                    <Table.Row>
+                        <Table.Cell colSpan='6'>                        
+                            <Icon name='close' />
+                        </Table.Cell>
+                    </Table.Row>
                     <Table.Row>
                         <Table.HeaderCell className="col-id">Id</Table.HeaderCell>
                         <Table.HeaderCell className="col-author">Author</Table.HeaderCell>

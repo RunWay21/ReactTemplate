@@ -66,7 +66,7 @@ module.exports = {
             "root": path.resolve(__dirname, "./frontend"),
             "components": "root/components",
             "../../theme.config": "semantic-ui-less/theme.config.example",
-            "./themes/themes/default": "semantic-ui-less/themes/default",
+            "../../themes/themes/default": "semantic-ui-less/themes/default",
         }
     }
 }
