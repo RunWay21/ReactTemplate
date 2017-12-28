@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom'
+import { Columns } from 'root/ui';
 
 import AppContent from './AppContent.jsx';
 import AppSidebar from './AppSidebar.jsx';
@@ -11,10 +12,12 @@ export default class AppBody extends React.Component {
 
     render() {
         return (
-            <div className="app-body columns">
-                {/* <AppSidebar className="column"></AppSidebar> */}
-                <AppContent className="column"></AppContent>
-            </div>
+            <Columns className="app-body">
+                {/* <Columns.Column as={AppSidebar} /> */}
+                <Columns.Column>
+                    <AppContent />
+                </Columns.Column>
+            </Columns>
         );
     }
 }

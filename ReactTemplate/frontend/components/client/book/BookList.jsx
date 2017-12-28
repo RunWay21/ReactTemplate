@@ -7,10 +7,11 @@ import types from 'root/actions/types';
 import urlUtil from 'root/utils/url';
 
 import './BookList.scss';
-import { Icon, Container, Header, Divider, Table } from 'semantic-ui-react';
+
+import { Title } from 'root/ui';
+
 import { Pagination, RepeatPanel } from 'components/shared';
 
-import { Line } from 'root/ui';
 
 class BookList extends React.Component {
     constructor(props) {
@@ -38,18 +39,12 @@ class BookList extends React.Component {
     render() {
         return (
             <div className="client_book_list">
-                <Line>
-                    <Line.Item>123</Line.Item>
-                    <Line.Item>123</Line.Item>
-                </Line>
-                <Container fluid={true}>
-                    <Header size='medium'>Books page</Header>
-                    <Divider />
-                    {this.renderFilter()}
-                    <RepeatPanel actionId={types.CLIENT_BOOK_GETBOOKS} action={() => this.getBooks(this.props)}>
-                        {this.renderTable()}
-                    </RepeatPanel>
-                </Container>
+                <Title>Books page</Title>
+                <hr />
+                {this.renderFilter()}
+                <RepeatPanel actionId={types.CLIENT_BOOK_GETBOOKS} action={() => this.getBooks(this.props)}>
+                    {this.renderTable()}
+                </RepeatPanel>
             </div>
         );
     }
@@ -67,42 +62,42 @@ class BookList extends React.Component {
     }
     renderTable() {
         return (
-            <Table>
-                <Table.Header>
-                    <Table.Row>
-                        <Table.Cell colSpan='6'>
-                            <Icon name='close' />
-                        </Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.HeaderCell className="col-id">Id</Table.HeaderCell>
-                        <Table.HeaderCell className="col-author">Author</Table.HeaderCell>
-                        <Table.HeaderCell className="col-title">Title</Table.HeaderCell>
-                        <Table.HeaderCell className="col-description">Description</Table.HeaderCell>
-                        <Table.HeaderCell className="col-isbn">ISBN</Table.HeaderCell>
-                        <Table.HeaderCell className="col-date">Date</Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
-                <Table.Body>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th colSpan='6'>
+
+                        </th>
+                    </tr>
+                    <tr>
+                        <th className="col-id">Id</th>
+                        <th className="col-author">Author</th>
+                        <th className="col-title">Title</th>
+                        <th className="col-description">Description</th>
+                        <th className="col-isbn">ISBN</th>
+                        <th className="col-date">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
                     {this.props.page.items.map(item => (
-                        <Table.Row key={item.id}>
-                            <Table.Cell className="col-id">{item.id}</Table.Cell>
-                            <Table.Cell className="col-author">{item.author}</Table.Cell>
-                            <Table.Cell className="col-title">{item.title}</Table.Cell>
-                            <Table.Cell className="col-description">{item.description}</Table.Cell>
-                            <Table.Cell className="col-isbn">{item.isbn}</Table.Cell>
-                            <Table.Cell className="col-date">{item.date}</Table.Cell>
-                        </Table.Row>
+                        <tr key={item.id}>
+                            <td className="col-id">{item.id}</td>
+                            <td className="col-author">{item.author}</td>
+                            <td className="col-title">{item.title}</td>
+                            <td className="col-description">{item.description}</td>
+                            <td className="col-isbn">{item.isbn}</td>
+                            <td className="col-date">{item.date}</td>
+                        </tr>
                     ))}
-                </Table.Body>
-                <Table.Footer>
-                    <Table.Row>
-                        <Table.HeaderCell colSpan='6'>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colSpan='6'>
                             <Pagination page={this.props.page} location={this.props.location}></Pagination>
-                        </Table.HeaderCell>
-                    </Table.Row>
-                </Table.Footer>
-            </Table>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
         );
     }
 }

@@ -21,7 +21,7 @@
     "axios": "0.x",
     "fbjs": "0.x",
     "query-string": "5.x",
-    "semantic-ui-less": "2.x",
+    "bulma": "0.x",
     "semantic-ui-react": "0.x",
     "core-js": "2.x"
   },

@@ -1,26 +1,23 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-import { Navbar, Line } from 'root/ui';
+import { Navbar } from 'root/ui';
 import urlHelper from 'root/utils/url';
 
 class Header extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this);
     }
 
     render() {
         return (
-            <div className="app-header">
-                <Navbar>
-                    <Navbar.Item brand as={Link} to={'/app'} active={this.props.location.pathname == '/app'}>
-                        VTrack
-                    </Navbar.Item>
+            <Navbar link className="app-header">
+                <Navbar.Brand>
+                    {this.renderMenuItem(<strong>VTrack</strong>, '/app')}
                     {this.renderMenuItem('Books', '/app/client/books')}
                     {this.renderMenuItem('Awesome', '/app/awesome')}
-                </Navbar>
-            </div>
+                </Navbar.Brand>
+            </Navbar>
         );
     }
     renderMenuItem(name, path) {

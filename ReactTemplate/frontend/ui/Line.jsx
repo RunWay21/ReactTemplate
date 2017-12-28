@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import './line.scss';
-
 class Item extends React.Component {
 
     static propTypes = {
