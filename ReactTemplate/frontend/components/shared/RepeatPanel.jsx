@@ -1,9 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import actions from 'root/actions'
-import { Header, Dimmer, Loader, Grid, Button } from 'semantic-ui-react';
+
+import actions from 'root/actions';
+
+import { Loader, Columns, Title, Button } from 'root/ui';
+
 class RepeatPanel extends React.Component {
+
+    static propTypes = {
+        actionId: PropTypes.string.isRequired,
+        action: PropTypes.func.isRequired
+    };
+
     constructor(props) {
         super(props);
         this.repeatAction = this.repeatAction.bind(this);
@@ -24,20 +34,23 @@ class RepeatPanel extends React.Component {
     render() {
         if (this.isWait()) {
             return (
-                <Loader active inline='centered'>Loading...</Loader>
+                <Columns centered>
+                    <Columns.Column narrow>
+                        <Loader size={3} style={{ margin: '0 auto' }}></Loader>
+                        <Title size={4} style={{ marginTop: '0.3em' }}>Loading...</Title>
+                    </Columns.Column>
+                </Columns>
             );
         }
         if (this.isError()) {
             return (
-                <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-                    <Grid.Column style={{ maxWidth: 450 }}>
-                        <Header as='h3'>
-                            Could not load data from the server.
-                            <Header.Subheader>Press repeat button to reload data.</Header.Subheader>
-                        </Header>
+                <Columns centered>
+                    <Columns.Column narrow className="has-text-centered">
+                        <Title size={4}>Could not load data from the server.</Title>
+                        <Title sub size={4}>Press repeat button to reload data.</Title>
                         <Button onClick={this.repeatAction}>Repeat</Button>
-                    </Grid.Column>
-                </Grid>
+                    </Columns.Column>
+                </Columns>
             );
         }
         return (
@@ -47,8 +60,6 @@ class RepeatPanel extends React.Component {
         );
     }
 }
-
-
 
 function mapStateToProps(state, ownProps) {
     return {

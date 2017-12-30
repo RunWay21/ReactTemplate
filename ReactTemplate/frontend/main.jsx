@@ -1,5 +1,4 @@
-import "babel-polyfill";
-import 'regenerator-runtime/runtime';
+import 'babel-polyfill';
 
 import React from 'react';
 import { render } from 'react-dom';

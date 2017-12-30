@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Column from './Column.jsx';
-
-export default class Columns extends React.Component {
-    static Column = Column;
+export default class PaginationLink extends React.Component {
 
     static propTypes = {
         as: PropTypes.oneOfType([
@@ -13,7 +10,8 @@ export default class Columns extends React.Component {
             PropTypes.func,
         ]),
         className: PropTypes.string,
-        centered: PropTypes.bool
+        size: PropTypes.number,
+        style: PropTypes.object
     };
 
     static defaultProps = {
@@ -25,8 +23,9 @@ export default class Columns extends React.Component {
     }
 
     render() {
-        const { as: Element, className, centered, ...props } = this.props;
-        const classes = classNames('columns', { 'is-centered': centered }, className);
-        return <Element className={classes} {...props}></Element>
+        const { as: Element, className, size, style, ...props } = this.props;
+        const classes = classNames('loader', className);
+        const styles = { width: size + 'em', height: size + 'em', ...style };
+        return <Element className={classes} style={styles} {...props}></Element>
     }
 }

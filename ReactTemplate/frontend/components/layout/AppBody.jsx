@@ -14,9 +14,7 @@ export default class AppBody extends React.Component {
         return (
             <Columns className="app-body">
                 {/* <Columns.Column as={AppSidebar} /> */}
-                <Columns.Column>
-                    <AppContent />
-                </Columns.Column>
+                <Columns.Column as={AppContent} />
             </Columns>
         );
     }

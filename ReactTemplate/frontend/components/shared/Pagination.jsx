@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react'
+
+import { Pagination as PaginationUi } from 'root/ui'
 
 import urlUtil from 'root/utils/url';
 
-class Pagination extends React.Component {
+export default class Pagination extends React.Component {
+    static propTypes = {
+        page: PropTypes.object.isRequired
+    };
+
     constructor(props) {
         super(props);
     }
@@ -18,8 +23,7 @@ class Pagination extends React.Component {
             url.query.page = i;
             let newLocation = urlUtil.getLocation(url);
             items.push(
-                <Menu.Item key={i} name={i.toString()} as={Link} to={newLocation}
-                    active={i == page}></Menu.Item>
+                <PaginationUi.Link key={i} as={Link} to={newLocation} current={i == page}>{i.toString()}</PaginationUi.Link>
             );
         }
         return items;
@@ -28,16 +32,12 @@ class Pagination extends React.Component {
     render() {
         return (
             <div>
-                <Menu pagination>
-                    {this.GetLinks()}
-                </Menu>
+                <PaginationUi>
+                    <PaginationUi.List>
+                        {this.GetLinks()}
+                    </PaginationUi.List>
+                </PaginationUi>
             </div>
         );
     }
 }
-
-Pagination.propTypes = {
-    page: PropTypes.object.isRequired
-};
-
-export default Pagination;

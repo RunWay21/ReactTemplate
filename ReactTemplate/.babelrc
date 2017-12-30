@@ -4,7 +4,13 @@
       "env",
       {
         "modules": false,
-        "useBuiltIns": true
+        "useBuiltIns": true,
+        "targets": {
+          "ie": 11,
+          "browsers": [
+            "last 2 versions"
+          ]
+        }
       }
     ],
     [
@@ -17,7 +23,6 @@
   "plugins": [
     [
       "transform-async-to-generator"
-    ],
-    ["lodash", { "id": ["lodash", "semantic-ui-react"] }]
+    ]
   ]
 }

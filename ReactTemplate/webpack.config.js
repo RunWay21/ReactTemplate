@@ -16,31 +16,24 @@ module.exports = {
     },
     module: {
         rules: [{
-                test: /\.jsx?$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/
-            },
-            {
-                test: /\.s?css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader']
-                })
-            },
-            {
-                test: /\.less$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'less-loader']
-                })
-            },
-            {
-                test: /\.(png|jpg|gif|svg|eot|ttf|woff2?)$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]?[hash]'
-                }
+            test: /\.jsx?$/,
+            loader: 'babel-loader',
+            exclude: /node_modules/
+        },
+        {
+            test: /\.s?css$/,
+            use: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: ['css-loader', 'postcss-loader', 'sass-loader']
+            })
+        },
+        {
+            test: /\.(png|jpg|gif|svg|eot|ttf|woff2?)$/,
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]?[hash]'
             }
+        }
         ]
     },
     devtool: '#eval-source-map',
@@ -49,24 +42,18 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: "vendor",
             minChunks: (module) => {
-                // if (module.resource == 'D:\\Programming\\VirtualShare\\Projects\\vue-ts\\src\\styles.scss') {
-                //   var json = JSON.stringify(module, filterJson(), '\t');
-                //   console.log(json);
-                // }
                 return typeof module.resource === 'string' &&
                     (module.resource.indexOf('node_modules') !== -1 ||
                         module.resource.indexOf('vendor.scss') !== -1);
             }
         }),
         new ExtractTextPlugin('[name].css'),
-        //new BundleAnalyzerPlugin()
+        // new BundleAnalyzerPlugin()
     ],
     resolve: {
         alias: {
             "root": path.resolve(__dirname, "./frontend"),
-            "components": "root/components",
-            "../../theme.config": "semantic-ui-less/theme.config.example",
-            "../../themes/themes/default": "semantic-ui-less/themes/default",
+            "components": "root/components"
         }
     }
 }

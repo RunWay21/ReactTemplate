@@ -12,12 +12,14 @@ export default class AppContent extends React.Component {
 
     render() {
         return (
-            <Switch>
-                <Route exact path='/app' component={HomePage} />
-                <Redirect exact from="/" to="/app" />
-                <Route path='/app/client/books' component={BookPage} />
-                <Route path='/app/awesome' component={AwesomeComponent} />
-            </Switch>
+            <div className={`${this.props.className} app-content`}>
+                <Switch>
+                    <Route exact path='/app' component={HomePage} />
+                    <Redirect exact from="/" to="/app" />
+                    <Route path='/app/client/books' component={BookPage} />
+                    <Route path='/app/awesome' component={AwesomeComponent} />
+                </Switch>
+            </div>
         );
     }
 }

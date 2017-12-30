@@ -39,7 +39,7 @@ class BookList extends React.Component {
     render() {
         return (
             <div className="client_book_list">
-                <Title>Books page</Title>
+                <Title size={4}>Books page</Title>
                 <hr />
                 {this.renderFilter()}
                 <RepeatPanel actionId={types.CLIENT_BOOK_GETBOOKS} action={() => this.getBooks(this.props)}>
