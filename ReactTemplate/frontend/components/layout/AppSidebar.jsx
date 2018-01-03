@@ -1,5 +1,5 @@
 import React from 'react';
-import NavItem from 'components/shared/NavItem.jsx';
+import { NavItem } from 'components/shared';
 
 export default class Header extends React.Component {
     constructor(props) {

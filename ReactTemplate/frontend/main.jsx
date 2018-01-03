@@ -6,12 +6,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import './ui/vendor.scss';
+import './icons';
 
 import configureStore from './store';
-import App from 'components/layout/App.jsx';
-
-
 const store = configureStore();
+
+import App from 'components/layout/App.jsx';
 
 render(
   <Provider store={store}>

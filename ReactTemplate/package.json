@@ -11,6 +11,7 @@
   "author": "FLS",
   "license": "PRIVATE",
   "dependencies": {
+    "core-js": "2.x",
     "react": "16.x",
     "react-dom": "16.x",
     "react-router-dom": "4.x",
@@ -18,11 +19,15 @@
     "redux-immutable-state-invariant": "2.x",
     "react-redux": "5.x",
     "redux-thunk": "2.x",
+    "bulma": "0.x",
+    "@fortawesome/fontawesome": "1.x",
+    "@fortawesome/fontawesome-free-solid": "5.x",
+    "@fortawesome/react-fontawesome": "0.x",
     "axios": "0.x",
     "fbjs": "0.x",
     "query-string": "5.x",
-    "bulma": "0.x",
-    "core-js": "2.x"
+    "classnames": "2.x",
+    "js-base64": "2.x"
   },
   "devDependencies": {
     "babel-core": "6.x",
@@ -43,7 +48,6 @@
     "webpack": "3.x",
     "webpack-watch-time-plugin": "0.x",
     "extract-text-webpack-plugin": "3.x",
-    "webpack-bundle-analyzer": "2.x",
-    "classnames": "2.x"
+    "webpack-bundle-analyzer": "2.x"
   }
 }

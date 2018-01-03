@@ -991,7 +991,7 @@ namespace Services
 
         private void Delay()
         {
-            Thread.Sleep(1500);
+            Thread.Sleep(500);
         }
 
         public int GetCounter()

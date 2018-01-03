@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { Pagination as PaginationUi } from 'root/ui'
 
-import urlUtil from 'root/utils/url';
+import { locationToUrl, urlToLocation } from 'root/utils/url';
 
 export default class Pagination extends React.Component {
     static propTypes = {
@@ -17,11 +17,11 @@ export default class Pagination extends React.Component {
 
     GetLinks() {
         let items = [];
-        let url = urlUtil.getUrl(this.props.location);
+        let url = locationToUrl(this.props.location);
         const page = url.query.page;
         for (let i = 1; i <= this.props.page.totalPages; i++) {
             url.query.page = i;
-            let newLocation = urlUtil.getLocation(url);
+            let newLocation = urlToLocation(url);
             items.push(
                 <PaginationUi.Link key={i} as={Link} to={newLocation} current={i == page}>{i.toString()}</PaginationUi.Link>
             );

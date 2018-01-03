@@ -4,13 +4,14 @@ import { bindActionCreators } from 'redux';
 import api from 'root/api';
 import actions from 'root/actions';
 import types from 'root/actions/types';
-import urlUtil from 'root/utils/url';
+import { locationToFilter, filterToLocation } from 'root/utils/url';
 
 import './BookList.scss';
 
-import { Title } from 'root/ui';
+import { Title, Level, Table } from 'root/ui';
+import FaIcon from '@fortawesome/react-fontawesome';
 
-import { Pagination, RepeatPanel } from 'components/shared';
+import { Pagination, RepeatPanel, SortLink } from 'components/shared';
 
 
 class BookList extends React.Component {
@@ -28,22 +29,19 @@ class BookList extends React.Component {
     }
 
     getBooks(props) {
-        let url = urlUtil.getUrl(props.location);
-        if (!url.query.page) {
-            url.query.page = 1;
-            props.history.push(urlUtil.getLocation(url));
-        } else
-            props.actions.getBooksAsync(url.query.page);
+        const filter = locationToFilter(props.location, 'author', 'asc');
+        props.actions.getBooksAsync(filter);
     }
 
     render() {
+        let filter = locationToFilter(this.props.location, 'author', 'asc');
         return (
             <div className="client_book_list">
                 <Title size={4}>Books page</Title>
                 <hr />
                 {this.renderFilter()}
                 <RepeatPanel actionId={types.CLIENT_BOOK_GETBOOKS} action={() => this.getBooks(this.props)}>
-                    {this.renderTable()}
+                    {this.renderTable(filter)}
                 </RepeatPanel>
             </div>
         );
@@ -51,53 +49,67 @@ class BookList extends React.Component {
 
     renderFilter() {
         return (
-            <div className="level">
-                <div className="level-left">
-                    <div className="level-item">
-
-                    </div>
-                </div>
-            </div>
+            <Level>
+                <Level.Left>
+                    <Level.Item>
+                        <FaIcon icon="sort-amount-up"></FaIcon>
+                        <FaIcon icon="sort-amount-down"></FaIcon>
+                    </Level.Item>
+                </Level.Left>
+                <Level.Right>
+                    <Level.Item>
+                        123
+                    </Level.Item>
+                </Level.Right>
+            </Level>
         );
     }
-    renderTable() {
+    renderTable(filter) {
         return (
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th colSpan='6'>
+            <Table>
+                <Table.Head>
+                    <Table.Row>
+                        <Table.Header colSpan='6'>
 
-                        </th>
-                    </tr>
-                    <tr>
-                        <th className="col-id">Id</th>
-                        <th className="col-author">Author</th>
-                        <th className="col-title">Title</th>
-                        <th className="col-description">Description</th>
-                        <th className="col-isbn">ISBN</th>
-                        <th className="col-date">Date</th>
-                    </tr>
-                </thead>
-                <tbody>
+                        </Table.Header>
+                    </Table.Row>
+                    <Table.Row>
+                        <Table.Header className="col-id">Id</Table.Header>
+                        <Table.Header className="col-author">
+                            <SortLink filter={filter} field="author">Author</SortLink>
+                        </Table.Header>
+                        <Table.Header className="col-title">
+                            <SortLink filter={filter} field="title">Title</SortLink>
+                        </Table.Header>
+                        <Table.Header className="col-description">
+                            <SortLink filter={filter} field="description">Description</SortLink>
+                        </Table.Header>
+                        <Table.Header className="col-isbn">
+                            <SortLink filter={filter} field="isbn">ISBN</SortLink>
+                        </Table.Header>
+                        <Table.Header className="col-date">Date</Table.Header>
+                    </Table.Row>
+                </Table.Head>
+                <Table.Body>
                     {this.props.page.items.map(item => (
-                        <tr key={item.id}>
-                            <td className="col-id">{item.id}</td>
-                            <td className="col-author">{item.author}</td>
-                            <td className="col-title">{item.title}</td>
-                            <td className="col-description">{item.description}</td>
-                            <td className="col-isbn">{item.isbn}</td>
-                            <td className="col-date">{item.date}</td>
-                        </tr>
+                        <Table.Row key={item.id}>
+                            <Table.Cell className="col-id">{item.id}</Table.Cell>
+                            <Table.Cell className="col-author">{item.author}</Table.Cell>
+                            <Table.Cell className="col-title">{item.title}</Table.Cell>
+                            <Table.Cell className="col-description">{item.description}</Table.Cell>
+                            <Table.Cell className="col-isbn">{item.isbn}</Table.Cell>
+                            <Table.Cell className="col-date">{item.date}</Table.Cell>
+                        </Table.Row>
                     ))}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colSpan='6'>
+                </Table.Body>
+                <Table.Footer>
+                    <Table.Row>
+                        <Table.Cell colSpan='6'>
                             <Pagination page={this.props.page} location={this.props.location}></Pagination>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
+                        </Table.Cell>
+                    </Table.Row>
+                </Table.Footer>
+            </Table>
         );
     }
 }

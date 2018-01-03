@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import actions from 'root/actions';
 
 import { Loader, Columns, Title, Button } from 'root/ui';
 
@@ -69,13 +66,6 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(actions.common.loader, dispatch)
-    };
-}
-
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(RepeatPanel);

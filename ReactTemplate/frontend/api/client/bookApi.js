@@ -1,10 +1,9 @@
 import http from 'root/http';
+import { filterToQuery } from 'root/utils/url';
 
-export async function getBooks(page) {
+export async function getBooks(filter) {
     const response = await http.get('book/getbooks', {
-        params: {
-            page
-        }
+        params: filterToQuery(filter)
     });
     return response.data;
 }

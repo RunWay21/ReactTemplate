@@ -4,3 +4,5 @@ export { default as Title } from './Title/Title.jsx';
 export { default as Pagination } from './Pagination/Pagination.jsx';
 export { default as Loader } from './Loader/Loader.jsx';
 export { default as Button } from './Button/Button.jsx';
+export { default as Level } from './Level/Level.jsx';
+export { default as Table } from './Table/Table.jsx';

@@ -9,11 +9,11 @@ export function getBooks(page) {
     };
 }
 
-export function getBooksAsync(pageNumber) {
+export function getBooksAsync(filter) {
     return async(dispatch) => {
         try {
             dispatch(loader.wait(types.CLIENT_BOOK_GETBOOKS));
-            var page = await api.client.book.getBooks(pageNumber);
+            var page = await api.client.book.getBooks(filter);
             dispatch(getBooks(page));
             dispatch(loader.ok(types.CLIENT_BOOK_GETBOOKS));
         } catch (error) {
