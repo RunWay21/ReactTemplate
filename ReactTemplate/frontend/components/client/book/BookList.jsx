@@ -8,10 +8,10 @@ import { locationToFilter, filterToLocation } from 'root/utils/url';
 
 import './BookList.scss';
 
-import { Title, Level, Table } from 'root/ui';
+import { Title, Level, Table, Control, Input, Label } from 'root/ui';
 import FaIcon from '@fortawesome/react-fontawesome';
 
-import { Pagination, RepeatPanel, SortLink } from 'components/shared';
+import { Pagination, RepeatPanel, SortLink, StringFilter } from 'components/shared';
 
 
 class BookList extends React.Component {
@@ -39,7 +39,7 @@ class BookList extends React.Component {
             <div className="client_book_list">
                 <Title size={4}>Books page</Title>
                 <hr />
-                {this.renderFilter()}
+                {this.renderFilter(filter)}
                 <RepeatPanel actionId={types.CLIENT_BOOK_GETBOOKS} action={() => this.getBooks(this.props)}>
                     {this.renderTable(filter)}
                 </RepeatPanel>
@@ -47,32 +47,34 @@ class BookList extends React.Component {
         );
     }
 
-    renderFilter() {
+    renderFilter(filter) {
         return (
-            <Level>
-                <Level.Left>
-                    <Level.Item>
-                        <FaIcon icon="sort-amount-up"></FaIcon>
-                        <FaIcon icon="sort-amount-down"></FaIcon>
+            <div>
+                <Level>
+                    <Level.Left>
+                        <Level.Item>
+                            <Label>Filters:</Label>
+                        </Level.Item>
+                        <Level.Item>
+                            <StringFilter filter={filter} field="author" placeholder="Author filter"></StringFilter>
+                        </Level.Item>
+                        <Level.Item>
+                            <StringFilter filter={filter} field="title" placeholder="Title filter"></StringFilter>
+                        </Level.Item>
+                    </Level.Left>
+                    <Level.Right>
+                        <Level.Item>
+                            123
                     </Level.Item>
-                </Level.Left>
-                <Level.Right>
-                    <Level.Item>
-                        123
-                    </Level.Item>
-                </Level.Right>
-            </Level>
+                    </Level.Right>
+                </Level>
+            </div>
         );
     }
     renderTable(filter) {
         return (
-            <Table>
+            <Table fullwidth>
                 <Table.Head>
-                    <Table.Row>
-                        <Table.Header colSpan='6'>
-
-                        </Table.Header>
-                    </Table.Row>
                     <Table.Row>
                         <Table.Header className="col-id">Id</Table.Header>
                         <Table.Header className="col-author">

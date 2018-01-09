@@ -8,10 +8,7 @@ const state = {
                 items: []
             }
         },
-        loader: {
-            error: [],
-            wait: []
-        }
+        loader: []
     }
 }
 

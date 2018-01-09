@@ -23,7 +23,7 @@ namespace ReactTemplate.Controllers
 
         [HttpGet]
         [Route(nameof(GetBooks))]
-        public Page<BookModel> GetBooks([FromUri]BookFilter filter)
+        public Page<BookModel> GetBooks([FromUri]CommonFilter filter)
         {
             return _bookService.GetBooks(filter);
         }

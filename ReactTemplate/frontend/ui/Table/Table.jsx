@@ -22,7 +22,8 @@ export default class Table extends React.Component {
             PropTypes.string,
             PropTypes.func,
         ]),
-        className: PropTypes.string
+        className: PropTypes.string,
+        fullwidth: PropTypes.bool
     };
 
     static defaultProps = {
@@ -34,8 +35,8 @@ export default class Table extends React.Component {
     }
 
     render() {
-        const { as: Element, className, ...props } = this.props;
-        const classes = classNames('table', className);
+        const { as: Element, fullwidth, className, ...props } = this.props;
+        const classes = classNames('table', { 'is-fullwidth': fullwidth }, className);
         return <Element className={classes} {...props}></Element>
     }
 }

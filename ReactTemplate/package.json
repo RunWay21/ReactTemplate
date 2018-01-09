@@ -27,7 +27,8 @@
     "fbjs": "0.x",
     "query-string": "5.x",
     "classnames": "2.x",
-    "js-base64": "2.x"
+    "js-base64": "2.x",
+    "lodash.debounce": "4.x"
   },
   "devDependencies": {
     "babel-core": "6.x",

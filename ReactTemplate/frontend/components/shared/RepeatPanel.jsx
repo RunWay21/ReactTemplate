@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import types from 'root/actions/types';
 import { Loader, Columns, Title, Button } from 'root/ui';
 
 class RepeatPanel extends React.Component {
@@ -16,20 +17,13 @@ class RepeatPanel extends React.Component {
         this.repeatAction = this.repeatAction.bind(this);
     }
 
-    isWait() {
-        return this.props.wait.some(x => x === this.props.actionId);
-    }
-
-    isError() {
-        return this.props.error.some(x => x === this.props.actionId);
-    }
-
     repeatAction() {
         this.props.action();
     }
 
     render() {
-        if (this.isWait()) {
+        const item = this.props.loader.find(x => x.id === this.props.actionId);
+        if (item && item.state === types.COMMON_LOADER_WAIT) {
             return (
                 <Columns centered>
                     <Columns.Column narrow>
@@ -39,7 +33,7 @@ class RepeatPanel extends React.Component {
                 </Columns>
             );
         }
-        if (this.isError()) {
+        if (item && item.state === types.COMMON_LOADER_ERROR) {
             return (
                 <Columns centered>
                     <Columns.Column narrow className="has-text-centered">
@@ -61,8 +55,7 @@ class RepeatPanel extends React.Component {
 function mapStateToProps(state, ownProps) {
     return {
         ...ownProps,
-        error: state.common.loader.error,
-        wait: state.common.loader.wait
+        loader: state.common.loader
     };
 }
 

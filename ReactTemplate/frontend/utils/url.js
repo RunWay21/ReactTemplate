@@ -33,22 +33,16 @@ export function filterToQuery(filter) {
         page: filter.page,
         orderBy: filter.orderBy,
         sortBy: filter.sortBy,
-        filters: filters ? JSON.stringify(filters) : undefined
+        filters: encodeFilters(filters)
     };
 }
 
 export function queryToFilter(query, orderBy, sortBy) {
-    const filters = query.filters ? decodeFilters(query.filters) : undefined;
-    let filterObject = undefined;
-    if (filters) {
-        filterObject = {};
-        filters.forEach(x => filterObject[x.field] = x);
-    }
     return {
         page: query.page ? query.page : 1,
         orderBy: query.orderBy ? query.orderBy : orderBy,
         sortBy: query.sortBy ? query.sortBy : sortBy,
-        filters: filterObject
+        filters: decodeFilters(query.filters)
     };
 }
 
@@ -65,8 +59,9 @@ export function filterToLocation(pathname, filter) {
 export function decodeFilters(filters) {
     if (filters) {
         try {
-            var json = Base64.decode(filters);
-            return JSON.parse(filters);
+            const json = Base64.decode(decodeURIComponent(filters));
+            const result = JSON.parse(json);
+            return result;
         } catch (error) {
             console.log(error);
         }
@@ -78,7 +73,7 @@ export function encodeFilters(filters) {
     try {
         if (filters && filters.length > 0) {
             var json = JSON.stringify(filters);
-            return Base64.encodeURI(json);
+            return encodeURIComponent(Base64.encode(json));
         }
     } catch (error) {
         console.log(error);
